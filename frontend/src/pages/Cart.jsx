@@ -15,7 +15,7 @@ function Cart() {
     const dispatch = useDispatch();
 
     const accessToken = localStorage.getItem("accessToken");
-    const API_BASE = "http://localhost:8000/api/v1/cart";
+    const API_BASE = `${import.meta.env.VITE_API_URL}/api/v1/cart`;
 
     // Calculate totals
     const subTotal = cart?.items?.reduce((total, item) => {

@@ -51,7 +51,7 @@ function Login() {
     try {
       setLoading(true);
       const res = await axios.post(
-        `http://localhost:8000/api/v1/user/login`,
+        `${import.meta.env.VITE_API_URL}/api/v1/user/login`,
         formData,
         {
           headers: {
@@ -85,7 +85,7 @@ function Login() {
     try {
       setLoading(true);
       const res = await axios.post(
-        `http://localhost:8000/api/v1/user/forgot-password`,
+        `${import.meta.env.VITE_API_URL}/api/v1/user/forgot-password`,
         { email: forgotEmail },
         {
           headers: {
@@ -117,7 +117,7 @@ function Login() {
     try {
       setLoading(true);
       const res = await axios.post(
-        `http://localhost:8000/api/v1/user/verify-otp/${forgotEmail}`,
+        `${import.meta.env.VITE_API_URL}/api/v1/user/verify-otp/${forgotEmail}`,
         { otp },
         {
           headers: {
@@ -158,7 +158,7 @@ function Login() {
       // TODO: Create this endpoint on backend
       // POST /api/v1/user/reset-password
       const res = await axios.post(
-        `http://localhost:8000/api/v1/user/reset-password`,
+        `${import.meta.env.VITE_API_URL}/api/v1/user/reset-password`,
         {
           email: forgotEmail,
           newPassword,
