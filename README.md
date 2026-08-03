@@ -1,248 +1,340 @@
 # 🛒 eKart – MERN Stack E-Commerce Website
 
-Author: Sudhanshu Gaikwad
+> A modern, full-stack E-Commerce website built with the MERN Stack featuring JWT Authentication, OTP Email Verification, Razorpay Payment Integration, Cloudinary Image Uploads, and a powerful Admin Dashboard.
 
-Tech Stack: MERN (MongoDB, Express.js, React.js, Node.js)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+![React](https://img.shields.io/badge/React-19-blue)
+![Node.js](https://img.shields.io/badge/Node.js-Express-success)
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-green)
+![Status](https://img.shields.io/badge/Status-Active-success)
 
-Payment Gateway: Razorpay
+---
 
-Features: OTP Email Verification, Admin Dashboard, Sales Analytics
+## 🌐 Live Demo
 
-------------------------------------------------------------
+🚀 **Live Website**
 
+https://free-mern-ecommerce-website-frontend.onrender.com/
 
-📌 PROJECT OVERVIEW
+---
 
-eKart is a full-featured e-commerce platform built using the MERN stack.
-It provides a seamless online shopping experience with secure authentication,
-product management, cart functionality, online payments, order tracking,
-and a comprehensive admin dashboard for managing the entire application.
+## 📂 GitHub Repository
 
-------------------------------------------------------------
-✨ FEATURES
+https://github.com/sudhanshugaikwad/mern-ecommerce-website
 
-USER FEATURES
+---
 
-• User Registration & Login
-• JWT Authentication
-• OTP Email Verification
-• Secure Password Encryption
-• View All Products
-• View Single Product Details
-• Search & Filter Products
-• Add to Cart
-• Update Cart Quantity
-• Remove Items from Cart
-• Wishlist Support (Optional)
-• User Profile View & Update
-• Order History
-• Secure Razorpay Payment Gateway
-• Responsive User Interface
+# 📌 Project Overview
 
-------------------------------------------------------------
+eKart is a complete MERN Stack E-Commerce application that provides a modern online shopping experience.
 
-ADMIN FEATURES
+The application includes secure authentication, OTP email verification, product management, shopping cart, Razorpay payment gateway, order management, and a professional admin dashboard with sales analytics.
 
-• Admin Authentication
-• Manage Users
-• Add New Products
-• Update Existing Products
-• Delete Products
-• Upload Product Images
-• Manage Orders
-• View Payments
-• Update Order Status
-• Sales Dashboard
-• Sales Analytics Charts (Recharts)
-• Manage User Profiles
+---
 
-------------------------------------------------------------
+# ✨ Features
 
-🛠️ TECH STACK
+## 👤 User Features
 
-Frontend
----------
-• React.js (Vite)
-• Redux Toolkit
-• Tailwind CSS
-• Shadcn UI
-• React Router DOM
-• Axios
-• Recharts
-• react-medium-image-zoom
+- User Registration & Login
+- JWT Authentication
+- OTP Email Verification
+- Secure Password Encryption
+- Browse Products
+- Product Details Page
+- Search Products
+- Add to Cart
+- Update Cart Quantity
+- Remove Cart Items
+- User Profile Management
+- Order History
+- Razorpay Secure Payment
+- Responsive Design
 
-Backend
---------
-• Node.js
-• Express.js
-• MongoDB
-• Mongoose
-• JWT Authentication
-• bcryptjs
-• Nodemailer
-• Multer
-• Cloudinary
-• DataURI
+---
 
-Payment Gateway
----------------
-• Razorpay
+## 🛠️ Admin Features
 
-Additional Features
--------------------
-• Protected Routes
-• OTP Email Verification
-• CORS Configuration
-• Environment Variables
-• Image Upload & Storage
+- Admin Authentication
+- Manage Users
+- Add Products
+- Edit Products
+- Delete Products
+- Upload Product Images
+- Manage Orders
+- Manage Payments
+- Update Order Status
+- Dashboard Analytics
+- Sales Reports using Recharts
 
-------------------------------------------------------------
+---
 
-📁 PROJECT STRUCTURE
+# 🛠️ Tech Stack
 
-eKart/
+## Frontend
+
+- React.js (Vite)
+- Redux Toolkit
+- Tailwind CSS
+- Shadcn UI
+- React Router DOM
+- Axios
+- Recharts
+- React Medium Image Zoom
+
+## Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT
+- bcryptjs
+- Nodemailer
+- Multer
+- Cloudinary
+- DataURI
+
+## Payment Gateway
+
+- Razorpay
+
+## Additional Features
+
+- Protected Routes
+- OTP Email Verification
+- CORS
+- Environment Variables
+- Cloudinary Image Upload
+
+---
+
+# 📁 Project Structure
+
+```text
+eKart
 │
-├── Frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── assets/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── layouts/
-│   │   ├── redux/
-│   │   ├── hooks/
-│   │   ├── services/
-│   │   ├── utils/
+├── Frontend
+│   ├── public
+│   ├── src
+│   │   ├── assets
+│   │   ├── components
+│   │   ├── pages
+│   │   ├── layouts
+│   │   ├── redux
+│   │   ├── hooks
+│   │   ├── services
+│   │   ├── utils
 │   │   ├── App.jsx
 │   │   └── main.jsx
-│   │   └── .env
-│   └── package.json
+│   ├── package.json
+│   └── .env.example
 │
-├── Backend/
-│   ├── config/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   ├── utils/
-│   ├── uploads/
+├── Backend
+│   ├── config
+│   ├── controllers
+│   ├── middleware
+│   ├── models
+│   ├── routes
+│   ├── uploads
+│   ├── utils
 │   ├── app.js
 │   ├── server.js
-│   ├── .env.js
-│   └── package.json
+│   ├── package.json
+│   └── .env.example
 │
-└── README.md
+├── README.md
+├── LICENSE
+└── .gitignore
+```
 
-------------------------------------------------------------
+---
 
-🔐 AUTHENTICATION
+# 🔐 Authentication
 
-• JWT Token Authentication
-• Protected Routes
-• Password Hashing using bcryptjs
-• OTP Email Verification
-• Role-Based Authorization
-• Admin Access Control
+- JWT Authentication
+- Protected Routes
+- Password Hashing (bcrypt)
+- OTP Email Verification
+- Role Based Authorization
+- Admin Access
 
-------------------------------------------------------------
+---
 
-💳 PAYMENT
+# 💳 Payment Integration
 
-• Razorpay Payment Integration
-• Secure Checkout
-• Payment Verification
-• Order Creation after Successful Payment
+- Razorpay Payment Gateway
+- Secure Checkout
+- Payment Verification
+- Automatic Order Creation
 
-------------------------------------------------------------
+---
 
-📊 ADMIN DASHBOARD
+# 📊 Admin Dashboard
 
-• Total Users
-• Total Products
-• Total Orders
-• Total Revenue
-• Sales Analytics
-• Monthly Sales Charts
-• Recent Orders
+- Total Users
+- Total Products
+- Total Orders
+- Total Revenue
+- Monthly Sales Analytics
+- Recent Orders
+- Revenue Charts
 
-------------------------------------------------------------
+---
 
-📦 API MODULES
+# 📦 API Modules
 
-Authentication
-• Register User
-• Login User
-• Verify OTP
-• Logout User
+### Authentication
 
-User
-• Get Profile
-• Update Profile
+- Register
+- Login
+- Logout
+- Verify OTP
 
-Products
-• Get All Products
-• Get Product
-• Create Product
-• Update Product
-• Delete Product
+### Users
 
-Cart
-• Add Item
-• Update Quantity
-• Remove Item
-• Get Cart
+- User Profile
+- Update Profile
 
-Orders
-• Create Order
-• Get Orders
-• Update Order Status
+### Products
 
-Payment
-• Create Razorpay Order
-• Verify Payment
+- Get Products
+- Product Details
+- Add Product
+- Update Product
+- Delete Product
 
-Admin
-• Dashboard Statistics
-• Sales Analytics
-• Manage Users
-• Manage Products
-• Manage Orders
+### Cart
 
-------------------------------------------------------------
+- Add Item
+- Update Quantity
+- Remove Item
+- Get Cart
 
-🚀 FUTURE IMPROVEMENTS
+### Orders
 
-• Product Reviews & Ratings
-• Wishlist
-• Coupon System
-• Multiple Payment Methods
-• Email Notifications
-• SMS Notifications
-• Product Recommendations
-• Dark Mode
-• Multi-language Support
-• Inventory Management
+- Create Order
+- View Orders
+- Update Order Status
 
-------------------------------------------------------------
+### Payments
 
-👨‍💻 DEVELOPER
+- Create Razorpay Order
+- Verify Payment
 
-Sudhanshu Gaikwad
+### Admin
+
+- Dashboard Statistics
+- Manage Users
+- Manage Products
+- Manage Orders
+
+---
+
+# 🚀 Installation
+
+## Clone Repository
+
+```bash
+git clone https://github.com/sudhanshugaikwad/mern-ecommerce-website.git
+```
+
+Move into the project
+
+```bash
+cd mern-ecommerce-website
+```
+
+---
+
+## Install Frontend
+
+```bash
+cd Frontend
+npm install
+npm run dev
+```
+
+---
+
+## Install Backend
+
+```bash
+cd Backend
+npm install
+npm run dev
+```
+
+---
+
+# 🔑 Environment Variables
+
+## Backend (.env)
+
+```env
+PORT=
+MONGODB_URI=
+JWT_SECRET=
+
+EMAIL_USER=
+EMAIL_PASS=
+
+RAZORPAY_KEY_ID=
+RAZORPAY_KEY_SECRET=
+
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+```
+
+---
+
+## Frontend (.env)
+
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+---
+
+# 🚀 Future Improvements
+
+- Product Reviews
+- Wishlist
+- Coupon System
+- Inventory Management
+- Product Ratings
+- Email Notifications
+- SMS Notifications
+- Dark Mode
+- Multi-language Support
+
+---
+
+# 👨‍💻 Developer
+
+**Sudhanshu Gaikwad**
 
 MERN Stack Developer
 
-GitHub:
+### GitHub
+
 https://github.com/sudhanshugaikwad
 
-LinkedIn:
+### LinkedIn
+
 https://www.linkedin.com/in/sudhanshugaikwad
 
-------------------------------------------------------------
+---
 
-⭐ If you like this project, don't forget to star the repository!
+# ⭐ Support
 
+If you found this project helpful, please consider giving it a ⭐ on GitHub.
 
+It helps others discover the project and supports future improvements.
 
+---
 
-i have create this repogitary for the eKart projects : https://github.com/sudhanshugaikwad/mern-ecommerce-website.git  so how can i push code on github this is 📁 PROJECT STRUCTURE
+## 📄 License
 
+This project is licensed under the MIT License.
