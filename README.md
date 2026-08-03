@@ -293,6 +293,7 @@ CLOUDINARY_API_SECRET=
 
 ```env
 VITE_API_URL=http://localhost:5000
+VITE_RAZORPAY_KEY_ID=
 ```
 
 ---
