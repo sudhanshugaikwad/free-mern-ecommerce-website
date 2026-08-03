@@ -1,21 +1,25 @@
-import { setUser } from '@/redux/userSlice';
-import { Button } from '@base-ui/react';
-import axios from 'axios';
-import { ShoppingCart, Menu, X } from 'lucide-react';
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'sonner';
+import { setUser } from "@/redux/userSlice";
+import { Button } from "@base-ui/react";
+import axios from "axios";
+import { ShoppingCart, Menu, X } from "lucide-react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 function Navbar() {
   const { user } = useSelector((store) => store.user);
-  const {cart} = useSelector(store=>store.product)
-  const accessToken = localStorage.getItem('accessToken');
-  const admin = user?.role === "admin" ? true : false;
+  const { cart } = useSelector((store) => store.product);
+
+  const accessToken = localStorage.getItem("accessToken");
+
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
+  const admin = user?.role === "admin";
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const closeMenu = () => setIsMenuOpen(false);
 
   const logoutHandler = async () => {
     try {
@@ -23,170 +27,233 @@ function Navbar() {
         `${import.meta.env.VITE_API_URL}/api/v1/user/logout`,
         {},
         {
-          headers: { Authorization: `Bearer ${accessToken}` },
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
         }
       );
 
       if (res.data.success) {
         dispatch(setUser(null));
-        localStorage.removeItem('accessToken');
+        localStorage.removeItem("accessToken");
         toast.success(res.data.message);
       }
     } catch (error) {
-      console.error("Logout Error:", error.response?.data || error);
       dispatch(setUser(null));
-      localStorage.removeItem('accessToken');
-      toast.error(error.response?.data?.message || "Logout failed");
+      localStorage.removeItem("accessToken");
+      toast.error(error.response?.data?.message || "Logout Failed");
     }
+
+    closeMenu();
   };
 
   return (
-    <header className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center py-4">
-          
+    <header className="sticky top-0 z-50 bg-white border-b shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Navbar */}
+        <div className="flex items-center justify-between h-16">
+
           {/* Logo */}
-          <div className="flex items-center">
+          <Link to="/" onClick={closeMenu}>
             <img
               src="/eKart.png"
-              alt="eKart"
-              className="w-24 sm:w-28 h-auto"
+              alt="eKart Logo"
+              className="h-10 sm:h-11 md:h-12 w-auto object-contain"
             />
-          </div>
+          </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-10">
-            <ul className="flex items-center gap-8 text-sm font-medium text-gray-700">
-              <li>
-                <Link to="/" className="hover:text-black transition-colors duration-200">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/products" className="hover:text-black transition-colors duration-200">
-                  Products
-                </Link>
-              </li>
-              {user && (
+          {/* Desktop */}
+          <div className="hidden md:flex items-center gap-8">
+
+            <nav>
+              <ul className="flex items-center gap-7 font-medium text-gray-700">
+
                 <li>
-                  {/* here we have get user id */}
-                  <Link to={`/profile/${user._id}`} className="hover:text-black transition-colors duration-200">
-                    Hello, {user.firstName}
+                  <Link
+                    to="/"
+                    className="hover:text-black transition"
+                  >
+                    Home
                   </Link>
                 </li>
-              )}
-              {admin && (
+
                 <li>
-                 
-                  <Link to={`/dashboard/sales`} className="hover:text-black transition-colors duration-200">
-                    Dashbord 
+                  <Link
+                    to="/products"
+                    className="hover:text-black transition"
+                  >
+                    Products
                   </Link>
                 </li>
-              )}
-              
-            </ul>
 
-            {/* Cart Icon */}
+                {user && (
+                  <li>
+                    <Link
+                      to={`/profile/${user._id}`}
+                      className="hover:text-black transition"
+                    >
+                      Hello, {user.firstName}
+                    </Link>
+                  </li>
+                )}
+
+                {admin && (
+                  <li>
+                    <Link
+                      to="/dashboard/sales"
+                      className="hover:text-black transition"
+                    >
+                      Dashboard
+                    </Link>
+                  </li>
+                )}
+              </ul>
+            </nav>
+
+            {/* Cart */}
+
             <Link
               to="/cart"
-              className="relative p-2 hover:bg-gray-100 rounded-full transition-colors duration-200"
+              className="relative rounded-full p-2 hover:bg-gray-100 transition"
             >
-              <ShoppingCart className="w-6 h-6 text-gray-700" />
-              <span className="absolute -top-1 -right-1 bg-black text-white text-[10px] font-semibold w-5 h-5 flex items-center justify-center rounded-full">
+              <ShoppingCart className="w-6 h-6" />
+
+              <span className="absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 rounded-full bg-black text-white text-[11px]">
                 {cart?.items?.length || 0}
               </span>
             </Link>
 
-            {/* Auth Button */}
+            {/* Button */}
+
             {user ? (
               <Button
                 onClick={logoutHandler}
-                type="button"
-                className="px-5 py-2.5 text-sm font-medium bg-gray-900 hover:bg-blue-700 text-white rounded transition-all duration-200 hover:shadow-md active:scale-[0.97] cursor-pointer"
+                className="cursor-pointer rounded-lg bg-black hover:bg-blue-700 text-white px-5 py-2 transition"
               >
                 Logout
               </Button>
             ) : (
               <Link to="/login">
-                <Button
-                  type="button"
-                  className="px-5 py-2.5 text-sm font-medium bg-gray-900 hover:bg-blue-700 text-white rounded transition-all duration-200 hover:shadow-md active:scale-[0.97] cursor-pointer"
-                >
+                <Button className="cursor-pointer rounded-lg bg-black hover:bg-blue-700 text-white px-5 py-2 transition">
                   Login
                 </Button>
               </Link>
             )}
-          </nav>
+          </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
+          {/* Mobile Right */}
+
+          <div className="flex md:hidden items-center gap-3">
+
+            {/* Cart */}
+
+            <Link
+              to="/cart"
+              className="relative p-2"
+              onClick={closeMenu}
+            >
+              <ShoppingCart className="w-6 h-6" />
+
+              <span className="absolute -top-1 -right-1 flex items-center justify-center w-5 h-5 rounded-full bg-black text-white text-[10px]">
+                {cart?.items?.length || 0}
+              </span>
+            </Link>
+
+            {/* Menu */}
+
+            <button
+              aria-label="Toggle Menu"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? (
+                <X size={28} />
+              ) : (
+                <Menu size={28} />
+              )}
+            </button>
+
+          </div>
         </div>
 
         {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 py-4 bg-white">
-            <ul className="flex flex-col gap-6 text-base font-medium text-gray-700 px-2">
-              <li>
-                <Link to="/" onClick={() => setIsMenuOpen(false)} className="hover:text-black">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/products" onClick={() => setIsMenuOpen(false)} className="hover:text-black">
-                  Products
-                </Link>
-              </li>
-              {user && (
-                <li>
-                  <Link to="/profile" onClick={() => setIsMenuOpen(false)} className="hover:text-black">
-                    Hello, {user.firstName}
-                  </Link>
-                </li>
-              )}
 
-              {/* Cart in Mobile */}
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-300 ${
+            isMenuOpen ? "max-h-[450px] py-4" : "max-h-0"
+          }`}
+        >
+          <ul className="flex flex-col gap-5 text-gray-700 font-medium">
+
+            <li>
+              <Link to="/" onClick={closeMenu}>
+                Home
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/products" onClick={closeMenu}>
+                Products
+              </Link>
+            </li>
+
+            {user && (
               <li>
-                <Link 
-                  to="/cart" 
-                  onClick={() => setIsMenuOpen(false)}
-                  className="flex items-center gap-3"
+                <Link
+                  to={`/profile/${user._id}`}
+                  onClick={closeMenu}
                 >
-                  <ShoppingCart className="w-6 h-6" />
-                  Cart
-                  <span className="bg-black text-white text-xs font-semibold px-2 py-0.5 rounded-full">
-                    0
-                  </span>
+                  Hello, {user.firstName}
                 </Link>
               </li>
-            </ul>
+            )}
 
-            {/* Auth Button in Mobile */}
-            <div className="mt-6 px-2">
+            {admin && (
+              <li>
+                <Link
+                  to="/dashboard/sales"
+                  onClick={closeMenu}
+                >
+                  Dashboard
+                </Link>
+              </li>
+            )}
+
+            <li>
+              <Link
+                to="/cart"
+                onClick={closeMenu}
+                className="flex items-center gap-3"
+              >
+                <ShoppingCart size={20} />
+
+                Cart
+
+                <span className="rounded-full bg-black text-white text-xs px-2 py-0.5">
+                  {cart?.items?.length || 0}
+                </span>
+              </Link>
+            </li>
+
+            <li>
               {user ? (
                 <Button
-                  onClick={() => {
-                    logoutHandler();
-                    setIsMenuOpen(false);
-                  }}
-                  className="w-full py-3 text-base font-medium text-white bg-blue-700 hover:bg-blue-900 rounded transition-all"
+                  onClick={logoutHandler}
+                  className="w-full rounded-lg bg-black hover:bg-blue-700 text-white py-3"
                 >
                   Logout
                 </Button>
               ) : (
-                <Link to="/login" onClick={() => setIsMenuOpen(false)}>
-                  <Button className="w-full py-3 text-base font-medium text-white bg-blue-700 hover:bg-blue-900 rounded transition-all">
+                <Link to="/login" onClick={closeMenu}>
+                  <Button className="w-full rounded-lg bg-black hover:bg-blue-700 text-white py-3">
                     Login
                   </Button>
                 </Link>
               )}
-            </div>
-          </div>
-        )}
+            </li>
+          </ul>
+        </div>
+
       </div>
     </header>
   );

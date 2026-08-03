@@ -74,14 +74,14 @@ function AdminOrders() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-100 py-6 px-4 sm:px-6 lg:px-8 ml-[280px] flex items-center justify-center">
+      <div className="min-h-screen bg-gray-100 py-6 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
         <p className="text-gray-600 text-lg">Loading all orders...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 py-6 px-4 sm:px-6 lg:px-8 ml-[280px]">
+    <div className="min-h-screen bg-gray-100 py-6 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-2xl font-bold text-gray-900 mb-6">
           Admin - All Orders

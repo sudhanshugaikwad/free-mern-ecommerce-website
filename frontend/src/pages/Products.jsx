@@ -61,20 +61,6 @@ const getAllProducts = async () => {
             );
           }
 
-        // if (!allProducts || allProducts.length === 0) {
-        //         return [];                    // ← Return empty array instead of undefined
-        //     }
-
-        //     let filtered = [...allProducts];
-
-        //     const searchTerm = search?.trim() || "";   // Safe handling
-
-        //     if (searchTerm !== "") {
-        //         filtered = filtered.filter((p) =>
-        //             p.productName?.toLowerCase().includes(searchTerm.toLowerCase())
-        //         );
-        //     }
-
             // this is for category filter
           if (category !== "All") {
             filtered = filtered.filter(p=>p.category === category)
